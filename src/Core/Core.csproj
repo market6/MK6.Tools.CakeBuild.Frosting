@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>MK6.Tools.CakeBuild.Frosting.Core</AssemblyName>
+    <RootNamespace>MK6.Tools.CakeBuild.Frosting.Core</RootNamespace>
+    <PackageId>MK6.Tools.CakeBuild.Frosting.Core</PackageId>
+    <PackageProjectUrl>https://github.com/market6/MK6.Tools.CakeBuild.Frosting</PackageProjectUrl>
+    <PackageVersion>0.0.1-alpha0001</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cake.Frosting" Version="0.1.0-alpha0071" />
+  </ItemGroup>
+
+</Project>
