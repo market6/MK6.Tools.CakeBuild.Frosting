@@ -11,6 +11,7 @@ namespace MK6.Tools.CakeBuild.Frosting.Tasks
     {
         public override void Run(Context context)
         {
+            context.Validate(ValidateOptions.Default, true);
             context.Information("Executing dotnet clean on solution...");
             context.DotNetCoreClean(context.SolutionFilePath.FullPath, new DotNetCoreCleanSettings
             {

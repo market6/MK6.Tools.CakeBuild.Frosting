@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Provisioning.TeamCity", "src\Provisioning.TeamCity\Provisioning.TeamCity.csproj", "{B5CB2159-28A2-43F8-B872-E77B2B9A7EF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvisioningTeamCity.Tests", "tests\ProvisioningTeamCity.Tests\ProvisioningTeamCity.Tests.csproj", "{C403C832-804D-4A2E-AE92-6A28B10C7DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProvisioningTeamCity.Tests", "tests\ProvisioningTeamCity.Tests\ProvisioningTeamCity.Tests.csproj", "{C403C832-804D-4A2E-AE92-6A28B10C7DD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Privisioning.TeamCity.DemoBuild", "src\Privisioning.TeamCity.DemoBuild\Privisioning.TeamCity.DemoBuild.csproj", "{803C05E2-8565-46E0-9957-CD32BCB040BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C403C832-804D-4A2E-AE92-6A28B10C7DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C403C832-804D-4A2E-AE92-6A28B10C7DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C403C832-804D-4A2E-AE92-6A28B10C7DD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

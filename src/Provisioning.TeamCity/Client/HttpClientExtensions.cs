@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -22,18 +20,35 @@ namespace Provisioning.TeamCity.Client
 
         public static async Task<V> PostAsync<T, V>(this HttpClient httpClient, string requestUri, T contentBody) where T : class
         {
-            var resp = await httpClient.PostAsync(requestUri, new StringContent(JsonConvert.SerializeObject(contentBody), Encoding.UTF8, SupportedMediaTypes.ApplicationJson));
-            resp.EnsureSuccessStatusCode();
+            var json = JsonConvert.SerializeObject(contentBody, Formatting.Indented);
+            var resp = await httpClient.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, SupportedMediaTypes.ApplicationJson));
+            await EnsureSuccessStatusCode(resp);
             var respContent = await resp.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<V>(respContent);
         }
 
         public static async Task<V> PutAsync<T, V>(this HttpClient httpClient, string requestUri, T contentBody) where T : class
         {
-            var resp = await httpClient.PutAsync(requestUri, new StringContent(JsonConvert.SerializeObject(contentBody), Encoding.UTF8, SupportedMediaTypes.ApplicationJson));
-            resp.EnsureSuccessStatusCode();
+            var json = JsonConvert.SerializeObject(contentBody);
+            var resp = await httpClient.PutAsync(requestUri, new StringContent(json, Encoding.UTF8, SupportedMediaTypes.ApplicationJson));
+            await EnsureSuccessStatusCode(resp);
             var respContent = await resp.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<V>(respContent);
         }
+
+        private static async Task EnsureSuccessStatusCode(HttpResponseMessage resp)
+        {
+            if(!resp.IsSuccessStatusCode)
+            {
+                var respContent = await resp.Content.ReadAsStringAsync();
+                throw new HttpClientException($"Response did not return a success status code: {resp.StatusCode}: {respContent}")
+                {
+                    ResponseStatusCode = resp.StatusCode,
+                    ResponseContent = respContent
+                };
+            }
+        }
+
+
     }
 }

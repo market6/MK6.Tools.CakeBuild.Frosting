@@ -13,29 +13,39 @@ namespace Provisioning.TeamCity.Client
         public ProjectsClient Projects { get; }
         public BuildTypesClient BuildTypes { get; }
 
-        public TeamCityClient(Uri serverUri, string username, string password, string defaultAcceptHeaderValue = "application/json")
+        public TeamCityClient(Uri serverUri, string username, string password, string defaultAcceptHeaderValue = "application/json") : this()
         {
             var handler = new HttpClientHandler
             {
                 Credentials = new NetworkCredential(username, password),
-                //UseDefaultCredentials = true,
                 PreAuthenticate = true
             };
 
             _httpClient = new HttpClient(handler) { BaseAddress =  serverUri };
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(defaultAcceptHeaderValue));
+            _httpClient.DefaultRequestHeaders.Add("Origin", serverUri.AbsoluteUri);
             Projects = new ProjectsClient(_httpClient);
             BuildTypes = new BuildTypesClient(_httpClient);
         }
 
-        public TeamCityClient(HttpClient httpClient)
+        public TeamCityClient()
+        {
+            Newtonsoft.Json.JsonConvert.DefaultSettings = () => new Newtonsoft.Json.JsonSerializerSettings
+            {
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+            };
+        }
+
+        public TeamCityClient(HttpClient httpClient) : this()
         {
             _httpClient = httpClient;
             Projects = new ProjectsClient(_httpClient);
+            BuildTypes = new BuildTypesClient(_httpClient);
         }
 
         #region IDisposable Support
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)

@@ -8,6 +8,9 @@ namespace Provisioning.TeamCity.Client
     {
         public static string Resolve(string urlTemplate, params string[] tokenValues)
         {
+            if (tokenValues == null || tokenValues.Length == 0)
+                return urlTemplate;
+
             return string.Format(urlTemplate, tokenValues);
         }
 
@@ -29,7 +32,11 @@ namespace Provisioning.TeamCity.Client
         public static class BuildType
         {
             public const string ByProjectLocator = "/app/rest/projects/{0}/buildTypes/";
+            public const string ByProjectLocatorAndId = "/app/rest/projects/{0}/buildTypes/id:{1}";
+            public const string All = "/app/rest/buildTypes/";
+            public const string Create = All;
             public const string ById = "/app/rest/buildTypes/id:{0}/";
+            public const string ByName = "/app/rest/buildTypes/name:{0}/";
 
         }
     }

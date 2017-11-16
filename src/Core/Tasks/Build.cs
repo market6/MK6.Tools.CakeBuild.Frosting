@@ -10,8 +10,10 @@ namespace MK6.Tools.CakeBuild.Frosting.Tasks
     [Dependency(typeof(Restore))]
     public sealed class Build : FrostingTask<Context>
     {
+
         public override void Run(Context context)
         {
+            context.Validate(ValidateOptions.Default, true);
             context.DotNetCoreBuild(context.SolutionFilePath.FullPath, new DotNetCoreBuildSettings
             {
                 Configuration = context.Configuration,

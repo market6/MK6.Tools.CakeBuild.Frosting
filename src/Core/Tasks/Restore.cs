@@ -9,6 +9,7 @@ namespace MK6.Tools.CakeBuild.Frosting.Tasks
     {
         public override void Run(Context context)
         {
+            context.Validate(ValidateOptions.Default, true);
             context.DotNetCoreRestore(context.SolutionFilePath.FullPath);
         }
     } 

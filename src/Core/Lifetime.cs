@@ -1,6 +1,5 @@
 using Cake.Common;
 using Cake.Common.Diagnostics;
-using Cake.Core;
 using Cake.Frosting;
 using System.Linq;
 using Cake.Incubator;
@@ -26,16 +25,19 @@ namespace MK6.Tools.CakeBuild.Frosting
             context.NugetDefaultPushSourceApiKey = GetEnvOrArg(context, "NUGET_DEFAULT_PUSH_SOURCE_URL_API_KEY", "nugetDefaultPushSourceApiKey");
 
             var slnPath = context.Globber.Match("*.sln", x => true).SingleOrDefault(x => !x.FullPath.EndsWith("Build.sln", System.StringComparison.OrdinalIgnoreCase));
-            if (slnPath == null)
-                throw new CakeException("No solution file found in root!");
 
-            context.SolutionFilePath = slnPath.FullPath;
-            context.Information("Using solution: {0}", context.SolutionFilePath.FullPath);
+            if(slnPath != null)
+                context.SolutionFilePath = slnPath.FullPath;
 
-            var slnResult = context.ParseSolution(context.SolutionFilePath);
-            context.Projects = slnResult.Projects.Select(x => new Project(x.Path, context.ParseProject(x.Path, context.Configuration))).ToList().AsReadOnly();
+            if (context.SolutionFilePath != null)
+            {
+                context.Information("Using solution: {0}", context.SolutionFilePath.FullPath);
+                var slnResult = context.ParseSolution(context.SolutionFilePath);
+                context.Projects = slnResult.Projects.Select(x => new Project(x.Path, context.ParseProject(x.Path, context.Configuration))).ToList().AsReadOnly();
+            }
+            else
+                context.Projects = new Project[0];
 
-            // Build system information.
             var buildSystem = context.BuildSystem();
             context.IsLocalBuild = buildSystem.IsLocalBuild;
 
