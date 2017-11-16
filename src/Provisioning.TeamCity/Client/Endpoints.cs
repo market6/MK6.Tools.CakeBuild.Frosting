@@ -18,6 +18,7 @@ namespace Provisioning.TeamCity.Client
         {
             public const string All = "/app/rest/projects/";
             public const string Create = All;
+            public const string ByLocator = "/app/rest/projects/{0}";
             public const string ById = "/app/rest/projects/id:{0}";
             public const string ByName = "/app/rest/projects/name:{0}";
             

@@ -16,14 +16,19 @@ namespace Provisioning.TeamCity.Client
             _httpClient = httpClient;
         }
 
-        public async Task<Project> ByIdAsync(string projectLocatorId)
+        public async Task<Project> ByLocatorAsync(string projectLocator)
         {
-            return await _httpClient.GetAsync<Project>(Endpoints.Project.ById, projectLocatorId);
+            return await _httpClient.GetAsync<Project>(Endpoints.Project.ByLocator, projectLocator);
         }
 
-        public async Task<Project> ByNameAsync(string projectLocatorName)
+        public async Task<Project> ByIdAsync(string id)
         {
-            return await _httpClient.GetAsync<Project>(Endpoints.Project.ByName, projectLocatorName);
+            return await _httpClient.GetAsync<Project>(Endpoints.Project.ById, id);
+        }
+
+        public async Task<Project> ByNameAsync(string name)
+        {
+            return await _httpClient.GetAsync<Project>(Endpoints.Project.ByName, name);
         }
 
         public async Task<Project> CreateAsync(NewProject newProject)

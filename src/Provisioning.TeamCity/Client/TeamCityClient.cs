@@ -13,17 +13,17 @@ namespace Provisioning.TeamCity.Client
         public ProjectsClient Projects { get; }
         public BuildTypesClient BuildTypes { get; }
 
-        public TeamCityClient(Uri serverUri, string username, string password, string defaultAcceptHeaderValue = "application/json") : this()
+        public TeamCityClient(TeamCityClientOptions options) : this()
         {
             var handler = new HttpClientHandler
             {
-                Credentials = new NetworkCredential(username, password),
+                Credentials = new NetworkCredential(options.Username, options.Password),
                 PreAuthenticate = true
             };
 
-            _httpClient = new HttpClient(handler) { BaseAddress =  serverUri };
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(defaultAcceptHeaderValue));
-            _httpClient.DefaultRequestHeaders.Add("Origin", serverUri.AbsoluteUri);
+            _httpClient = new HttpClient(handler) { BaseAddress =  options.ServerUri };
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(options.DefaultAcceptHeaderValue));
+            _httpClient.DefaultRequestHeaders.Add("Origin", options.ServerUri.AbsoluteUri);
             Projects = new ProjectsClient(_httpClient);
             BuildTypes = new BuildTypesClient(_httpClient);
         }
