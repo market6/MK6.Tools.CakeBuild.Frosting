@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Provisioning.TeamCity", "src\Provisioning.TeamCity\Provisioning.TeamCity.csproj", "{B5CB2159-28A2-43F8-B872-E77B2B9A7EF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProvisioningTeamCity.Tests", "tests\ProvisioningTeamCity.Tests\ProvisioningTeamCity.Tests.csproj", "{C403C832-804D-4A2E-AE92-6A28B10C7DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Privisioning.TeamCity.DemoBuild", "src\Privisioning.TeamCity.DemoBuild\Privisioning.TeamCity.DemoBuild.csproj", "{803C05E2-8565-46E0-9957-CD32BCB040BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Privisioning.TeamCity.DemoBuild", "src\Privisioning.TeamCity.DemoBuild\Privisioning.TeamCity.DemoBuild.csproj", "{803C05E2-8565-46E0-9957-CD32BCB040BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provisioning.Bitbucket", "src\Provisioning.Bitbucket\Provisioning.Bitbucket.csproj", "{F54AF059-045A-49E5-929E-ECEE9A921428}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provisioning.HttpExtensions", "src\Provisioning.HttpExtensions\Provisioning.HttpExtensions.csproj", "{AB0653BC-21B7-4A71-846C-7A8A94AEDAD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{803C05E2-8565-46E0-9957-CD32BCB040BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54AF059-045A-49E5-929E-ECEE9A921428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54AF059-045A-49E5-929E-ECEE9A921428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54AF059-045A-49E5-929E-ECEE9A921428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54AF059-045A-49E5-929E-ECEE9A921428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB0653BC-21B7-4A71-846C-7A8A94AEDAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0653BC-21B7-4A71-846C-7A8A94AEDAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0653BC-21B7-4A71-846C-7A8A94AEDAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0653BC-21B7-4A71-846C-7A8A94AEDAD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

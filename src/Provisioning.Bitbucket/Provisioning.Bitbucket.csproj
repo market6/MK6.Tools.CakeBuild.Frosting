@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.0.1-alpha0006" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Provisioning.HttpExtensions\Provisioning.HttpExtensions.csproj" />
   </ItemGroup>
 
 </Project>

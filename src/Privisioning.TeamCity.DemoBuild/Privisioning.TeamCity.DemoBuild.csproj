@@ -6,10 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.0.1-alpha0005" />
+    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.0.1-alpha0006" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Provisioning.Bitbucket\Provisioning.Bitbucket.csproj" />
     <ProjectReference Include="..\Provisioning.TeamCity\Provisioning.TeamCity.csproj" />
   </ItemGroup>
 
