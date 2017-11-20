@@ -4,10 +4,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Provisioning.HttpExtensions;
+using System;
 
 namespace Provisioning.Bitbucket.Client
 {
-    public class BitbucketClient
+    public class BitbucketClient : IDisposable
     {
         private readonly HttpClient _httpClient;
 
@@ -37,6 +38,11 @@ namespace Provisioning.Bitbucket.Client
         public Repository CreateRepository(string username, string repoSlug, Repository repository)
         {
             return CreateRepositoryAsync(username, repoSlug, repository).Result;
+        }
+
+        public void Dispose()
+        {
+            _httpClient?.Dispose();
         }
     }
 }
