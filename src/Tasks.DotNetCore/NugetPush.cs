@@ -7,11 +7,10 @@ using Cake.Frosting;
 
 namespace MK6.Tools.CakeBuild.Frosting.Tasks
 {
-    [TaskName("NugetPush")]
-    [Dependency(typeof(Package))]
-    public sealed class NugetPush : FrostingTask<Context>
+    [Dependency(typeof(DotNetCorePack))]
+    public sealed class NugetPush : FrostingTask<DotNetCoreContext>
     {
-        public override void Run(Context context)
+        public override void Run(DotNetCoreContext context)
         {
             var nugetSettings = new DotNetCoreNuGetPushSettings
             {

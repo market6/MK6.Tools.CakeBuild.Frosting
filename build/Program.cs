@@ -1,7 +1,6 @@
 ﻿using Cake.Frosting;
 using MK6.Tools.CakeBuild.Frosting;
 using MK6.Tools.CakeBuild.Frosting.Tasks;
-using System;
 
 public class Program : IFrostingStartup
 {

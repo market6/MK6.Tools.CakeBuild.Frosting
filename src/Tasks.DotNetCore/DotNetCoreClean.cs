@@ -6,10 +6,9 @@ using Cake.Common.IO;
 
 namespace MK6.Tools.CakeBuild.Frosting.Tasks
 {
-    [TaskName("Clean")]
-    public sealed class Clean : FrostingTask<Context>
+    public sealed class DotNetCoreClean : FrostingTask<DotNetCoreContext>
     {
-        public override void Run(Context context)
+        public override void Run(DotNetCoreContext context)
         {
             context.Validate(ValidateOptions.Default, true);
             context.Information("Executing dotnet clean on solution...");

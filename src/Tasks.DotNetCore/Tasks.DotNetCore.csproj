@@ -2,14 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <AssemblyName>MK6.Tools.CakeBuild.Frosting.Core</AssemblyName>
-    <RootNamespace>MK6.Tools.CakeBuild.Frosting.Core</RootNamespace>
-    <PackageId>MK6.Tools.CakeBuild.Frosting.Core</PackageId>
+    <AssemblyName>MK6.Tools.CakeBuild.Frosting.Tasks.DotNetCore</AssemblyName>
+    <RootNamespace>MK6.Tools.CakeBuild.Frosting.Tasks.DotNetCore</RootNamespace>
+    <PackageId>MK6.Tools.CakeBuild.Frosting.DotNetCore</PackageId>
     <PackageProjectUrl>https://github.com/market6/MK6.Tools.CakeBuild.Frosting</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Cake.Frosting" Version="0.1.0-alpha0073" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>

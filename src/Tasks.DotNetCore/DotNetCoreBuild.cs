@@ -1,19 +1,19 @@
-using Cake.Common.Diagnostics;
 using Cake.Frosting;
 using Cake.Common.Tools.DotNetCore;
 using Cake.Common.Tools.DotNetCore.Build;
 using Cake.Core;
+using Cake.Common.Diagnostics;
 
 namespace MK6.Tools.CakeBuild.Frosting.Tasks
 {
-    [TaskName("Build")]
-    [Dependency(typeof(Restore))]
-    public sealed class Build : FrostingTask<Context>
+    [Dependency(typeof(DotNetCoreRestore))]
+    public sealed class DotNetCoreBuild : FrostingTask<DotNetCoreContext>
     {
 
-        public override void Run(Context context)
+        public override void Run(DotNetCoreContext context)
         {
             context.Validate(ValidateOptions.Default, true);
+            context.Information("Building projects with version: {0}", context.BuildVersion.Version.FullSemVer);
             context.DotNetCoreBuild(context.SolutionFilePath.FullPath, new DotNetCoreBuildSettings
             {
                 Configuration = context.Configuration,

@@ -17,7 +17,7 @@ namespace MK6.Tools.CakeBuild.Frosting.Utilities
             });
         }
 
-        public static GitVersionRunner Init(Context context)
+        public static GitVersionRunner Init(IContext context)
         {
             return new GitVersionRunner(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools, context.Log);
         }

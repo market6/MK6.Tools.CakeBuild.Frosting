@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>MK6.Tools.CakeBuild.Frosting</id>
-    <version>0.0.2</version>
+    <id>MK6.Tools.CakeBuild.Frosting.Template</id>
+    <version>0.0.5</version>
     <description>
       Creates the Market6 Cake Frosting Build Script
     </description>
@@ -15,7 +15,7 @@
     <file src=".template.config/template.json" target="content/.template.config" />
     <file src="build.ps1" target="content/build.ps1" />
     <file src="Build.csproj" target="content/build" />
-    <file src="NuGet.config" target="content/build" />
+    <file src="../../NuGet.config" target="content/build" />
     <file src="Program.cs" target="content/build" />
 </files>
 </package>

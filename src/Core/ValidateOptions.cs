@@ -4,6 +4,6 @@
     {
         public bool SolutonFileMustExistInRoot { get; set; }
 
-        public static ValidateOptions Default => new ValidateOptions { SolutonFileMustExistInRoot = true };
+        public static ValidateOptions Default => new ValidateOptions { SolutonFileMustExistInRoot = false };
     }
 }

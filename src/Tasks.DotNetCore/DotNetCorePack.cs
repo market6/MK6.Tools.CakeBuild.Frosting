@@ -1,4 +1,5 @@
-﻿using Cake.Common.Tools.DotNetCore;
+﻿using Cake.Common.Diagnostics;
+using Cake.Common.Tools.DotNetCore;
 using Cake.Common.Tools.DotNetCore.Pack;
 using Cake.Core;
 using Cake.Frosting;
@@ -6,14 +7,15 @@ using System.Linq;
 
 namespace MK6.Tools.CakeBuild.Frosting.Tasks
 {
-    [TaskName("Package")]
-    [Dependency(typeof(Build))]
-    public class Package : FrostingTask<Context>
+    [Dependency(typeof(DotNetCoreBuild))]
+    public class DotNetCorePack : FrostingTask<DotNetCoreContext>
     {
-        public override void Run(Context context)
+        public override void Run(DotNetCoreContext context)
         {
             foreach (var project in context.Projects)
             {
+                context.Information("Packaging project {0} with version: {1}",project.ProjectParserResult.AssemblyName, context.BuildVersion.Version.FullSemVer);
+
                 context.DotNetCorePack(project.ProjectPath.FullPath, new DotNetCorePackSettings()
                 {
                     Configuration = context.Configuration,
