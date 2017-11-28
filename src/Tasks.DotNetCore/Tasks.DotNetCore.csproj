@@ -10,10 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Cake.Frosting" Version="0.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
+    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.3.0" />
   </ItemGroup>
 
 </Project>
