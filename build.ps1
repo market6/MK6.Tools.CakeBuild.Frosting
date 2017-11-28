@@ -73,8 +73,11 @@ if($FoundDotNetCliVersion -ne $DotNetVersion) {
     (New-Object System.Net.WebClient).DownloadFile($DotNetInstallerUri, "$InstallPath\dotnet-install.ps1");
     & $InstallPath\dotnet-install.ps1 -Version $DotNetVersion -InstallDir $InstallPath;
 
-    Remove-PathVariable "$InstallPath"
-    $env:PATH = "$InstallPath;$env:PATH"
+    Write-Host "dotnet install complete"
+    
+    $InstallPath = Join-Path $InstallPath dotnet.exe
+    Write-Host "Setting alias 'dotnet' to $InstallPath"
+    Set-Alias "dotnet" $InstallPath
     $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
     $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
 }
