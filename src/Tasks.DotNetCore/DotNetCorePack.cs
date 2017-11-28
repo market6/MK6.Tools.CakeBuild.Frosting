@@ -12,7 +12,7 @@ namespace MK6.Tools.CakeBuild.Frosting.Tasks
     {
         public override void Run(DotNetCoreContext context)
         {
-            foreach (var project in context.Projects)
+            foreach (var project in context.Projects.Where(x => x.ProjectParserResult.IsNetCore && !string.IsNullOrWhiteSpace(x.ProjectParserResult.NetCore.PackageId)))
             {
                 context.Information("Packaging project {0} with version: {1}",project.ProjectParserResult.AssemblyName, context.BuildVersion.Version.FullSemVer);
 

@@ -6,7 +6,7 @@ using Cake.Core;
 
 namespace BuildTestRunner
 {
-    [TaskName("Default")]
+    [TaskName("Default2")]
     public sealed class DefaultTask : FrostingTask
     {
         public override void Run(ICakeContext context)
