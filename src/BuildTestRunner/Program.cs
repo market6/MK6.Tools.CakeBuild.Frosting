@@ -21,9 +21,9 @@ namespace BuildTestRunner
 
         public void Configure(ICakeServices services)
         {
-            services.UseAssembly(typeof(Default).Assembly);
-            services.UseContext<DotNetCoreContext>();
-            services.UseLifetime<DotNetCoreLifetime>();
+            //services.UseAssembly(typeof(Default).Assembly);
+            services.UseContext<DynamicContext>();
+            services.UseLifetime<DynamicLifetime>();
             services.UseWorkingDirectory("../../");
         }
     }
