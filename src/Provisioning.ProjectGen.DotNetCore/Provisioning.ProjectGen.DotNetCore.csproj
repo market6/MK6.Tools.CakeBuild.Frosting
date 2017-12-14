@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Provisioning.Core\Provisioning.Core.csproj" />
-    <ProjectReference Include="..\Provisioning.HttpExtensions\Provisioning.HttpExtensions.csproj" />
   </ItemGroup>
 
 </Project>

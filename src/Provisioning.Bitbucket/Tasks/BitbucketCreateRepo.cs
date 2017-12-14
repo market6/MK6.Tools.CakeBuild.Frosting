@@ -1,22 +1,22 @@
-﻿using Cake.Frosting;
-using MK6.Tools.CakeBuild.Frosting;
+﻿using Cake.Common.Diagnostics;
+using Cake.Frosting;
 using Provisioning.Bitbucket.Client;
+using Provisioning.Core;
 
 namespace Provisioning.Bitbucket.Tasks
 {
-    public class BitbucketCreateRepo : FrostingTask<Context>
+    public class BitbucketCreateRepo : FrostingTask<ProvisioningContext>
     {
-        public override void Run(Context context)
+        public override void Run(ProvisioningContext context)
         {
-            const string ownerUsername = "joshschlesinger";
-            const string repoSlug = "jstestrepo";
-            const string scm = "git";
-            const bool isPrivate = true;
+            context.Information("Creating repo: {0}/{1}", context.ScmRepositoryOptions.OwnerUsername, context.ScmRepositoryOptions.Name);
+            var bco = new BitbucketClientOptions { ServerUri = context.ScmRepositoryOptions.ApiBaseAddress, Username = context.ScmRepositoryOptions.HttpBasicCredentials.UserName, Password = context.ScmRepositoryOptions.HttpBasicCredentials.Password };
+            var repo = context.BitbucketCreateRepository(bco, context.ScmRepositoryOptions.OwnerUsername, context.ScmRepositoryOptions.Name, context.ScmRepositoryOptions.ScmType, context.ScmRepositoryOptions.IsPrivate);
+            context.Information("Succeesfully created repo: {0}", repo.Name);
 
-            context.Log.Write(Cake.Core.Diagnostics.Verbosity.Normal, Cake.Core.Diagnostics.LogLevel.Information, "Creating repo: {0}/{1}", ownerUsername, repoSlug);
-            var bco = new BitbucketClientOptions { ServerUri = new System.Uri("https://api.bitbucket.org"), Username = "***", Password = "***" };
-            var repo = context.BitbucketCreateRepository(bco, ownerUsername, repoSlug, scm, isPrivate);
-            context.Log.Write(Cake.Core.Diagnostics.Verbosity.Normal, Cake.Core.Diagnostics.LogLevel.Information, "Succeesfully created repo: {0}", repo.Name);
+            dynamic outputs = new DynamicPropertyBag();
+            outputs.NewRepository = repo;
+            context.AddTaskOutput<BitbucketCreateRepo>(outputs);
         }
     }
 }

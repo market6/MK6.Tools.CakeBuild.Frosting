@@ -1,4 +1,5 @@
-﻿using Cake.Core.Annotations;
+﻿using Cake.Core;
+using Cake.Core.Annotations;
 using MK6.Tools.CakeBuild.Frosting;
 using Provisioning.Bitbucket.Client;
 using Provisioning.Bitbucket.Client.Models;
@@ -6,31 +7,31 @@ using System.Threading.Tasks;
 
 namespace Provisioning.Bitbucket
 {
-    public static class BitbuckerExtensions
+    public static class BitbucketExtensions
     {
         [CakeMethodAlias]
-        public static async Task<Repository> BitbucketCreateRepositoryAsync(this Context context, BitbucketClientOptions clientOptions, string ownerUsername, string repositorySlug, string scm, bool isPrivate)
+        public static async Task<Repository> BitbucketCreateRepositoryAsync(this ICakeContext context, BitbucketClientOptions clientOptions, string ownerUsername, string repositorySlug, string scm, bool isPrivate)
         {
             return await BitbucketCreateRepositoryAsync(context, new BitbucketCreateRepositoryOptions(clientOptions, ownerUsername, repositorySlug, scm, isPrivate));
         }
 
         [CakeMethodAlias]
-        public static Repository BitbucketCreateRepository(this Context context, BitbucketClientOptions clientOptions, string ownerUsername, string repositorySlug, string scm, bool isPrivate)
+        public static Repository BitbucketCreateRepository(this ICakeContext context, BitbucketClientOptions clientOptions, string ownerUsername, string repositorySlug, string scm, bool isPrivate)
         {
             return BitbucketCreateRepositoryAsync(context, clientOptions, ownerUsername, repositorySlug, scm, isPrivate).Result;
         }
 
         [CakeMethodAlias]
-        public static async Task<Repository> BitbucketCreateRepositoryAsync(this Context context, BitbucketCreateRepositoryOptions options)
+        public static async Task<Repository> BitbucketCreateRepositoryAsync(this ICakeContext context, BitbucketCreateRepositoryOptions options)
         {
             using (var client = new BitbucketClient(options))
             {
-                return await client.CreateRepositoryAsync(options.OwnerUsername, options.RepositorySlug, options.NewRepository); 
+                return await client.CreateRepositoryAsync(options.OwnerUsername, options.RepositorySlugFormatted, options.NewRepository); 
             }
         }
 
         [CakeMethodAlias]
-        public static Repository BitbucketCreateRepository(this Context context, BitbucketCreateRepositoryOptions options)
+        public static Repository BitbucketCreateRepository(this ICakeContext context, BitbucketCreateRepositoryOptions options)
         {
             return BitbucketCreateRepositoryAsync(context, options).Result;
         }
@@ -40,6 +41,7 @@ namespace Provisioning.Bitbucket
     {
         public string OwnerUsername { get; set; }
         public string RepositorySlug { get; set; }
+        public string RepositorySlugFormatted { get { return RepositorySlug.ToLower(); } }
         public Repository NewRepository { get; set; }
 
         public BitbucketCreateRepositoryOptions(BitbucketClientOptions clientOptions, string ownerUsername, string repositorySlug, string scm, bool isPrivate)

@@ -20,10 +20,10 @@ namespace BuildTestRunner
 
         public void Configure(ICakeServices services)
         {
-            services.UseContext<DotNetCoreContext>();
-            services.UseLifetime<DotNetCoreLifetime>();
-            //services.UseContext<DynamicContext>();
-            //services.UseLifetime<DynamicLifetime>();
+            //services.UseContext<DotNetCoreContext>();
+            //services.UseLifetime<DotNetCoreLifetime>();
+            services.UseContext<MyContext>();
+            services.UseLifetime<MyLifetime>();
             services.UseWorkingDirectory("../../");
         }
     }

@@ -8,9 +8,4 @@
     <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Provisioning.Core\Provisioning.Core.csproj" />
-    <ProjectReference Include="..\Provisioning.HttpExtensions\Provisioning.HttpExtensions.csproj" />
-  </ItemGroup>
-
 </Project>
