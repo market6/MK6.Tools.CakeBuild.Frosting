@@ -5,6 +5,7 @@ using System.Net;
 using System.Dynamic;
 using System.Collections.Generic;
 using Cake.Frosting;
+using Cake.Core.IO;
 
 namespace Provisioning.Core
 {
@@ -13,6 +14,7 @@ namespace Provisioning.Core
         public ScmRepositoryOptions ScmRepositoryOptions { get; set; }
         public ProjectGenOptions ProjectGenOptions { get; set; }
         public dynamic TaskOutputs { get; set; }
+        public GitLocalOptions GitLocalOptions { get; set; }
         public ProvisioningContext(ICakeContext context) : base(context)
         {
             TaskOutputs = new TaskOutputs();
@@ -21,6 +23,16 @@ namespace Provisioning.Core
         public void AddTaskOutput<T>(dynamic output) where T : FrostingTask<ProvisioningContext>
         {
             TaskOutputs.AddTaskOutput<T>(output);
+        }
+
+        public T GetTaskOutput<T>(string taskClassName)
+        {
+            return TaskOutputs.GetTaskOutput<T>(taskClassName);
+        }
+
+        public T GetTaskOutput<TTaskType, T>()
+        {
+            return TaskOutputs.GetTaskOutput<TTaskType, T>();
         }
     }
 
@@ -57,6 +69,19 @@ namespace Provisioning.Core
         public void AddTaskOutput<TTaskType>(dynamic output) where TTaskType : FrostingTask<ProvisioningContext>
         {
             RawProperties.Add(typeof(TTaskType).Name, output);
+        }
+
+        public T GetTaskOutput<T>(string taskClassName)
+        {
+            if (RawProperties.TryGetValue(taskClassName, out var result))
+                return (T)result;
+
+            return default(T);
+        }
+
+        public T GetTaskOutput<TTaskType, T>()
+        {
+            return GetTaskOutput<T>(typeof(TTaskType).Name);
         }
     }
 
@@ -98,5 +123,18 @@ namespace Provisioning.Core
         /// </summary>
         public string ProjectName { get; set; }
 
+    }
+
+    public class GitLocalOptions
+    {
+        /// <summary>
+        /// The task name that creates the remote scm repo (most likely BitbucketCreateRepo)
+        /// </summary>
+        public string CloenUrl { get; set; }
+        public NetworkCredential CloneCredentials { get; set; }
+        /// <summary>
+        /// The directory the remote repo will get cloned into
+        /// </summary>
+        public DirectoryPath WorkingDirectory { get; set; }
     }
 }

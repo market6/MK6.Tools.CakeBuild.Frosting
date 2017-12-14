@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Provisioning.Runner", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provisioning.ProjectGen.DotNetCore", "src\Provisioning.ProjectGen.DotNetCore\Provisioning.ProjectGen.DotNetCore.csproj", "{05E9AC41-4E28-4918-83B1-D742E880C465}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Provisioning.LocalGit", "src\Provisioning.LocalGit\Provisioning.LocalGit.csproj", "{0D012E2A-F439-4F2C-B060-F13776304E68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{05E9AC41-4E28-4918-83B1-D742E880C465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E9AC41-4E28-4918-83B1-D742E880C465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E9AC41-4E28-4918-83B1-D742E880C465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D012E2A-F439-4F2C-B060-F13776304E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D012E2A-F439-4F2C-B060-F13776304E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D012E2A-F439-4F2C-B060-F13776304E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D012E2A-F439-4F2C-B060-F13776304E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

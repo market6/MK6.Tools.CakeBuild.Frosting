@@ -3,6 +3,7 @@ using Cake.Frosting;
 using MK6.Tools.CakeBuild.Frosting;
 using Provisioning.Bitbucket.Tasks;
 using Provisioning.Core;
+using Provisioning.LocalGit.Tasks;
 using Provisioning.ProjectGen.DotNetCore.Tasks;
 using Provisioning.TeamCity.Tasks;
 using System;
@@ -29,7 +30,7 @@ namespace Provisioning.Runner
             //services.UseAssembly(typeof(DynamicContext).Assembly);
             //services.UseAssembly(typeof(BitbucketCreateRepo).Assembly);
             //services.UseAssembly(typeof(BitbucketCreateRepo).Assembly);
-            services.UseAssembly(typeof(ProjectGenDotNetNew).Assembly);
+            services.UseAssembly(typeof(LocalGitInit).Assembly);
             services.UseContext<ProvisioningContext>();
             services.UseLifetime<ProvisioningLifetime>();
             services.UseWorkingDirectory("..");
@@ -37,7 +38,7 @@ namespace Provisioning.Runner
 
         private void ConfigureLifetime()
         {
-            ProvisioningLifetime.RegisterAdditionalSetup(ctx => {
+            ProvisioningLifetime.RegisterAdditionalSetup(new Action<ProvisioningContext>(ctx => {
                 ctx.ScmRepositoryOptions = new ScmRepositoryOptions
                 {
                     Name                    = ctx.Argument("scm-name", string.Empty),
@@ -55,7 +56,14 @@ namespace Provisioning.Runner
                     OutputBasePath  = ctx.Argument("gen-output-base-path", string.Empty),
                     ProjectName     = ctx.Argument("gen-project-name", string.Empty),
                 };
-            });
+
+                ctx.GitLocalOptions = new GitLocalOptions
+                {
+                    CloenUrl = "https://joshschlesinger@bitbucket.org/joshschlesinger/devops_poc.git",//(string)ctx.TaskOutputs.GetTaskOutput("BitbucketCreateRepo").CloneUrl,
+                    CloneCredentials = new System.Net.NetworkCredential("joshschlesinger", "Duwu2594$"),
+                    WorkingDirectory = "C:\\temp\\devops_poc"
+                };
+            }));
         }
     }
 }

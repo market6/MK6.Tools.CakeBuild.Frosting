@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cake.Git" Version="0.16.1" />
+    <PackageReference Include="MK6.Tools.CakeBuild.Frosting.Core" Version="0.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Provisioning.Core\Provisioning.Core.csproj" />
+  </ItemGroup>
+
+</Project>
