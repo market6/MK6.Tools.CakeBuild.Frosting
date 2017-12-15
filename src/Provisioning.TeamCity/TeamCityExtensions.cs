@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using Provisioning.TeamCity.Client;
 using Provisioning.TeamCity.Client.Models;
 using Cake.Core.Annotations;
+using Cake.Core;
 
 namespace Provisioning.TeamCity
 {
     public static class TeamCityExtensions
     {
         [CakeMethodAlias]
-        public static async Task<Project> TeamCityProjectGetAsync(this Context context, TeamCityProjectLocatorType projectLocatorType, string projectLocatorValue, TeamCityClientOptions options)
+        public static async Task<Project> TeamCityProjectGetAsync(this ICakeContext context, TeamCityProjectLocatorType projectLocatorType, string projectLocatorValue, TeamCityClientOptions options)
         {
             using (var tcc = new TeamCityClient(options))
             {
@@ -31,13 +32,13 @@ namespace Provisioning.TeamCity
         }
 
         [CakeMethodAlias]
-        public static Project TeamCityProjectGet(this Context context, TeamCityProjectLocatorType projectLocatorType, string projectLocatorValue, TeamCityClientOptions options)
+        public static Project TeamCityProjectGet(this ICakeContext context, TeamCityProjectLocatorType projectLocatorType, string projectLocatorValue, TeamCityClientOptions options)
         {
             return TeamCityProjectGetAsync(context, projectLocatorType, projectLocatorValue, options).Result;
         }
 
         [CakeMethodAlias]
-        public static async Task<Project> TeamCityProjectCreateAsync(this Context context, NewProject newProject, TeamCityClientOptions options)
+        public static async Task<Project> TeamCityProjectCreateAsync(this ICakeContext context, NewProject newProject, TeamCityClientOptions options)
         {
             using (var tcc = new TeamCityClient(options))
             {
@@ -46,7 +47,7 @@ namespace Provisioning.TeamCity
         }
 
         [CakeMethodAlias]
-        public static Project TeamCityProjectCreate(this Context context, NewProject newProject, TeamCityClientOptions options)
+        public static Project TeamCityProjectCreate(this ICakeContext context, NewProject newProject, TeamCityClientOptions options)
         {
             return TeamCityProjectCreateAsync(context, newProject, options).Result;
         }

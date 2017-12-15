@@ -17,19 +17,14 @@ namespace Provisioning.LocalGit.Tasks
         }
     }
 
-    public sealed class LocalGitAdd : FrostingTask<ProvisioningContext>
+    public sealed class LocalGitFinalize : FrostingTask<ProvisioningContext>
     {
         public override void Run(ProvisioningContext context)
         {
             context.GitAddAll(context.GitLocalOptions.WorkingDirectory.FullPath);
+            context.GitCommit(context.GitLocalOptions.WorkingDirectory, GetType().Assembly.FullName, "", "initial commit by provisioner");
+            context.GitPush(context.GitLocalOptions.WorkingDirectory, context.GitLocalOptions.CloneCredentials.UserName, context.GitLocalOptions.CloneCredentials.Password);
         }
     }
 
-    public sealed class LocalGitCommit : FrostingTask<ProvisioningContext>
-    {
-        public override void Run(ProvisioningContext context)
-        {
-            context.GitCommit(context.GitLocalOptions.WorkingDirectory, GetType().Assembly.FullName, "", "initial commit by provisioner");
-        }
-    }
 }

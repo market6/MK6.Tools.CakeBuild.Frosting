@@ -27,10 +27,10 @@ namespace Provisioning.Runner
         public void Configure(ICakeServices services)
         {
             ConfigureLifetime();
-            //services.UseAssembly(typeof(DynamicContext).Assembly);
-            //services.UseAssembly(typeof(BitbucketCreateRepo).Assembly);
-            //services.UseAssembly(typeof(BitbucketCreateRepo).Assembly);
+            services.UseAssembly(typeof(BitbucketCreateRepo).Assembly);
             services.UseAssembly(typeof(LocalGitInit).Assembly);
+            services.UseAssembly(typeof(ProjectGenDotNetNew).Assembly);
+            //TODO: Add aditional UseAssembly for additional projects (ie TC, Octopus)
             services.UseContext<ProvisioningContext>();
             services.UseLifetime<ProvisioningLifetime>();
             services.UseWorkingDirectory("..");
@@ -59,9 +59,9 @@ namespace Provisioning.Runner
 
                 ctx.GitLocalOptions = new GitLocalOptions
                 {
-                    CloenUrl = "https://joshschlesinger@bitbucket.org/joshschlesinger/devops_poc.git",//(string)ctx.TaskOutputs.GetTaskOutput("BitbucketCreateRepo").CloneUrl,
-                    CloneCredentials = new System.Net.NetworkCredential("joshschlesinger", "Duwu2594$"),
-                    WorkingDirectory = "C:\\temp\\devops_poc"
+                    CloenUrl = (string)ctx.TaskOutputs.GetTaskOutput("BitbucketCreateRepo").CloneUrl,
+                    CloneCredentials = new System.Net.NetworkCredential(ctx.ScmRepositoryOptions.HttpBasicCredentials.UserName, ctx.ScmRepositoryOptions.HttpBasicCredentials.Password),
+                    WorkingDirectory = $"C:\\temp\\{(string)ctx.TaskOutputs.GetTaskOutput("BitbucketCreateRepo").RepoName}"
                 };
             }));
         }

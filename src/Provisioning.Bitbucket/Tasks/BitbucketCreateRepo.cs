@@ -15,8 +15,8 @@ namespace Provisioning.Bitbucket.Tasks
             context.Information("Succeesfully created repo: {0}", repo.Name);
 
             dynamic outputs = new DynamicPropertyBag();
-            outputs.NewRepository = repo;
             outputs.CloneUrl = $"git@bitbucket.org:{context.ScmRepositoryOptions.OwnerUsername}/{context.ScmRepositoryOptions.Name}.git"; //building the clone url here manually for now...it may exist in the reposnse when creating the repo;
+            outputs.RepoName = repo.Name;
             context.AddTaskOutput<BitbucketCreateRepo>(outputs);
         }
     }

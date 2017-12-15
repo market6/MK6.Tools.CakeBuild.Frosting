@@ -1,5 +1,6 @@
 ﻿using Cake.Frosting;
 using MK6.Tools.CakeBuild.Frosting;
+using Provisioning.Core;
 using Provisioning.TeamCity.Client;
 using Provisioning.TeamCity.Client.Models;
 using System;
@@ -8,9 +9,9 @@ using System.Text;
 
 namespace Provisioning.TeamCity.Tasks
 {
-    public class CreateProject : FrostingTask<Context>
+    public class CreateProject : FrostingTask<ProvisioningContext>
     {
-        public override void Run(Context context)
+        public override void Run(ProvisioningContext context)
         {
             var options = new TeamCityClientOptions
             {
